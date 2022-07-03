@@ -26,7 +26,7 @@ app.post("/form-validation", (req, res) => {
   if (!onlyLettersSpaces(firstName)) {
     res.status(400).send({
       response:
-        "Your first name does not consist only of letters. Please change!",
+        "Dein Vorname enthält andere Zeichen als nur Buchstaben. Bitte ändern!",
     });
     return;
   }
@@ -34,30 +34,34 @@ app.post("/form-validation", (req, res) => {
   if (!onlyLettersSpaces(lastName)) {
     res.status(400).send({
       response:
-        "Your last name does not consist only of letters. Please change!",
+        "Dein Nachname enthält andere Zeichen als nur Buchstaben. Bitte ändern",
     });
     return;
   }
   if (!validateEmail(email)) {
     res
       .status(400)
-      .send({ response: "Your email is not valid, Please change!" });
+      .send({ response: "Deine E-Mail ist nicht gültig. Bitte ändern!" });
     return;
   }
 
   if (!validateMessage(message)) {
-    res.status(400).send({ response: "Please only use 200 letters & spaces!" });
+    res.status(400).send({
+      response: "Deine Nachricht ist länger als 200 Zeichen. Bitte ändern!",
+    });
     return;
   }
 
   if (!validateRequestType(requestType)) {
-    res.status(400).send({ response: "Please choose a valid request type!" });
+    res.status(400).send({ response: "Bitte wähle eine richtige Antwort!" });
     return;
   }
 
   res
     .status(200)
-    .send({ response: "you have passed form validation, congrats!" });
+    .send({
+      response: "Du hast die Umfrage Validierung bestanden. Gratulation!",
+    });
 });
 
 app.listen(port, () => {
